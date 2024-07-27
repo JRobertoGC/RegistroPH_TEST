@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import AppRouter from './routes/router';
 import { checkServerConnection } from './services/api'; // Importa la nueva función
-import LoadingPage from './pages/LoadingPage/LoadingPage';
+import { LoadingPage, OfflinePage } from './pages/index';
 
 function App() {
     const [isConnected, setIsConnected] = useState<boolean | null>(null);
@@ -23,7 +23,7 @@ function App() {
     }, []);
 
     if (isConnected === null) {
-        return <div>Loading...</div>; // Puede ser una pantalla de carga mientras se verifica la conexión
+        return <LoadingPage/>; // Puede ser una pantalla de carga mientras se verifica la conexión
     }
 
     return (
@@ -40,7 +40,7 @@ function App() {
                 pauseOnHover={false}
                 theme="light"
             />
-            {isConnected ? <AppRouter /> : <LoadingPage />}
+            {isConnected ? <AppRouter /> : <OfflinePage />}
         </div>
     );
 }

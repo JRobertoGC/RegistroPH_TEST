@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { LoadingPage } from "../pages/index"; // Asegúrate de que esta página exista
+import { OfflinePage } from "../pages/index"; // Asegúrate de que esta página exista
 import { useAppContext } from "../store/app-context";
 
 const PublicRouter = () => {
@@ -8,7 +8,7 @@ const PublicRouter = () => {
   return (
     <div>
       {loadingContext ? (
-        <LoadingPage />
+        <OfflinePage />
       ) : (
         <>
           <Outlet />

@@ -14,7 +14,7 @@ const SearchPage: React.FC = () => {
 
     const handleSearch = async () => {
         if (!searchTerm.trim()) {
-            toast.warn('Por favor ingrese un término de búsqueda');
+            toast.warn('Por favor ingresa el nombre o apellido de una participante');
             return;
         }
 
@@ -23,7 +23,7 @@ const SearchPage: React.FC = () => {
             toast.success('Participantes encontrados');
             setTimeout(() => {
                 navigate('/results', { state: { participants: results } });
-            }, 2000); // Retraso de 2 segundos antes de la navegación
+            }, 1000); // Retraso de 2 segundos antes de la navegación
         } catch (error: any) {
             if (error.response && error.response.status === 404) {
                 toast.warn('No se encontró a ninguna participante');
@@ -31,6 +31,12 @@ const SearchPage: React.FC = () => {
                 toast.error('Error al buscar participantes');
             }
             console.error('Error al buscar participantes:', error);
+        }
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            handleSearch();
         }
     };
 
@@ -43,6 +49,7 @@ const SearchPage: React.FC = () => {
                     placeholder="Buscar participantes"
                     value={searchTerm}
                     onChange={setSearchTerm}
+                    onKeyDown={handleKeyDown}
                 />
                 <Button
                     label="Buscar"
@@ -66,4 +73,5 @@ const SearchPage: React.FC = () => {
 };
 
 export default SearchPage;
+
 
