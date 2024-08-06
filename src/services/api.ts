@@ -1,7 +1,7 @@
 // src/api.ts
 import axios from 'axios';
 
-const API_URL = 'https://83fc1d1f7c6146d435506ad7d911d8f1.serveo.net';
+const API_URL = 'http://10.48.228.208:5000';
 
 // Buscar participantes
 export const searchParticipants = async (query: string) => {
