@@ -1,7 +1,7 @@
 // src/api.ts
 import axios from 'axios';
 
-const API_URL = 'http://10.48.228.208:5000';
+const API_URL = 'https://ce7e-148-241-129-75.ngrok-free.app';
 
 // Buscar participantes
 export const searchParticipants = async (query: string) => {
