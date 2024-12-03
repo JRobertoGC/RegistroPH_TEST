@@ -1,12 +1,12 @@
-// src/api.ts
 import axios from 'axios';
 
-const API_URL = 'https://ce7e-148-241-129-75.ngrok-free.app';
+const API_URL = 'https://backup-castle-brooks-shipments.trycloudflare.com';
 
 // Buscar participantes
 export const searchParticipants = async (query: string) => {
     try {
-        const response = await axios.get(`${API_URL}/user/${query}`);
+        console.log(`${API_URL}/user/${query}`);
+        const response = await axios.get(`${API_URL}/user/${encodeURIComponent(query)}`);
         return response.data;
     } catch (error) {
         throw error;

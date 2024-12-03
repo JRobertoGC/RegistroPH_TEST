@@ -17,13 +17,19 @@ const SearchPage: React.FC = () => {
             toast.warn('Por favor ingresa el nombre o apellido de una participante');
             return;
         }
-
+    
         try {
             const results = await searchParticipants(searchTerm);
+    
+            if (results.length === 0) { // Si no hay resultados
+                toast.warn('No se encontró a ninguna participante');
+                return;
+            }
+    
             toast.success('Participantes encontrados');
             setTimeout(() => {
                 navigate('/results', { state: { participants: results } });
-            }, 1000); // Retraso de 2 segundos antes de la navegación
+            }, 1000); // Retraso de 1 segundo antes de la navegación
         } catch (error: any) {
             if (error.response && error.response.status === 404) {
                 toast.warn('No se encontró a ninguna participante');
@@ -33,6 +39,7 @@ const SearchPage: React.FC = () => {
             console.error('Error al buscar participantes:', error);
         }
     };
+    
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
